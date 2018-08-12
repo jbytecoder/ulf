@@ -1,0 +1,12 @@
+apply plugin: 'java-library'
+
+group = 'org.ulf'
+ext.artifact = 'api-core'
+version = '0.0.1'
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Universal Logging Facade Api',
+                   'Implementation-Version': version
+    }
+}
