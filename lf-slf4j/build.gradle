@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+
+group = 'org.ulf'
+ext.artifact = 'ulf-slf4j'
+version = '0.0.1'
+
+repositories {
+	mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Universal Logging Facade over SLF4J',
+                   'Implementation-Version': version
+    }
+}
+
+dependencies {
+	api project(':api:core')
+	implementation 'org.slf4j:slf4j-api:1.7.25'
+}
