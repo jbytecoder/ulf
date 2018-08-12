@@ -5,8 +5,6 @@
  */
 package org.ulf.api;
 
-import java.util.Map;
-
 /**
  * Represents the desiered logging framework.
  * 

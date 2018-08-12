@@ -18,4 +18,8 @@ jar {
 dependencies {
 	api project(':api:core')
 	implementation 'org.slf4j:slf4j-api:1.7.25'
+        
+        testImplementation 'junit:junit:4.12'
+        testImplementation project(':api:direct')
+        testImplementation 'org.slf4j:slf4j-jcl:1.7.25'
 }
