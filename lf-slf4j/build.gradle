@@ -9,6 +9,7 @@ repositories {
 }
 
 jar {
+    baseName 'ulf-slf4j'
     manifest {
         attributes 'Implementation-Title': 'Universal Logging Facade over SLF4J',
                    'Implementation-Version': version

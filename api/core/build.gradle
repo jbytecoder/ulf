@@ -5,6 +5,7 @@ ext.artifact = 'api-core'
 version = '0.0.1'
 
 jar {
+    baseName 'ulf-api'
     manifest {
         attributes 'Implementation-Title': 'Universal Logging Facade Api',
                    'Implementation-Version': version
