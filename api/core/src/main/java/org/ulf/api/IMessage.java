@@ -14,13 +14,15 @@ package org.ulf.api;
  *                   durring message filtration in underlying framework.
  *                   these include: message log level, and marker</li>
  *  <li>Source - this data describe the exact place in code, that produced
- *               this message. They include the class instance ( used to obtain it's
- *               qualified name ) and method name  </li>
+ *               this message. They include the class name, method name or
+ *               faccade class name if method and class name detection
+ *                from stack is desiered</li>
  * </ol>
  * @author jbytecoder
  */
 public interface IMessage {
-    Class getSourceClass();
+    String getFacadeName();
+    String getSourceClass();
     String getSoruceMethod();
     IMarker getMarker();
     int getLevel();
@@ -28,9 +30,12 @@ public interface IMessage {
     String getFormat();
     Object[] getFormatArguments();
     
-    IMessage from( Class c, String method );
+    IMessage facade( String fqcn );
+    IMessage from( String c, String method );
     IMessage markAs( IMarker marker );
     IMessage at( int level );
-    IMessage say( String format, Object... args );
+    IMessage saing( String format );
+    IMessage using( Object... args );
     IMessage about( Throwable th );
+    IMessage say();
 }
