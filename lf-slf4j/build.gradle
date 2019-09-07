@@ -6,6 +6,9 @@ version = '0.0.1'
 
 repositories {
 	mavenCentral()
+  maven {
+    url  "https://dl.bintray.com/jbytecoder/java"
+  }
 }
 
 jar {
@@ -18,9 +21,10 @@ jar {
 
 dependencies {
 	api project(':api:core')
-	implementation 'org.slf4j:slf4j-api:1.7.25'
+	implementation 'org.slf4j:slf4j-api:1.7.28'
         
         testImplementation 'junit:junit:4.12'
         testImplementation project(':api:direct')
-        testImplementation 'org.slf4j:slf4j-jcl:1.7.25'
+        testImplementation 'org.slf4j:slf4j-jcl:1.7.28'
+        testImplementation 'org.jbc.ulf:ulf-api-core:0.0.1'
 }

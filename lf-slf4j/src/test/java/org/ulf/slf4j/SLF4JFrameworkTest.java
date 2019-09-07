@@ -15,6 +15,6 @@ import org.ulf.api.direct.L;
 public class SLF4JFrameworkTest {
     @Test
     public void test() {
-        L.e(getClass(), "test", "Example message {}", 2);
+        L.e(SLF4JFrameworkTest.class, "test", "Example message {}");
     }
 }

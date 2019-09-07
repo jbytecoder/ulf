@@ -1,0 +1,90 @@
+subprojects { sp ->
+  plugins.withType(JavaPlugin) {
+
+    sp.tasks.register("sourcesJar",Jar) {
+      classifier = 'sources'
+      from sp.sourceSets.main.allSource
+
+      dependsOn sp.tasks.named("classes")
+      group "jar"
+    }
+
+    sp.tasks.register("javadocJar",Jar) {
+      classifier 'javadoc'
+      from sp.javadoc.destinationDir
+
+      sp.javadoc.failOnError = false
+      dependsOn sp.javadoc
+      group 'jar'
+    }
+
+    artifacts {
+      archives tasks.named("sourcesJar")
+      archives tasks.named("javadocJar")
+    }
+  }
+
+  plugins.withType(MavenPublishPlugin) {
+    sp.afterEvaluate {
+      publishing {
+        publications {
+          main(MavenPublication) {
+            from components.java
+            artifact sourcesJar {
+              classifier "sources"
+            }
+            artifact javadocJar {
+              classifier "javadoc"
+            }
+
+            groupId "org.jbc.ulf"
+            artifactId sp.artifact
+            version sp.version
+
+            pom {
+              name = sp.artifact
+              description = sp.description
+              url = 'https://github.com/jbytecoder/ulf'
+
+              licenses {
+                license {
+                  name = 'The Apache License, Version 2.0'
+                  url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+              }
+              developers {
+                developer {
+                  id = 'jbytecoder'
+                  name = 'JByteCoder'
+                  email = 'jbytecoder@gmail.com'
+                }
+              }
+              scm {
+                connection = 'https://github.com/jbytecoder/ulf'
+                developerConnection = 'https://github.com/jbytecoder/ulf'
+                url = 'http://github.com/jbytecoder/ulf'
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  plugins.withId("com.jfrog.bintray") {
+    sp.afterEvaluate {
+      sp.bintray {
+          user 'jbytecoder'
+          key  '68d4426ce8877ffe818c9a6997cfa5fa81dcdacf'
+         publications = ['main']
+          pkg {
+            repo = 'java'
+            name = 'ulf'
+            licenses = ['MIT']
+            vcsUrl = 'https://github.com/jbytecoder/ulf'
+          }
+      }
+    }
+  }
+
+}

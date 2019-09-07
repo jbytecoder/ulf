@@ -1,8 +1,17 @@
-apply plugin: 'java-library'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id "com.jfrog.bintray"
+}
 
-group = 'org.jbc.ulf'
+description = 'Universal Logging Facade'
+group = 'org.ulf'
 ext.artifact = 'ulf-api-core'
 version = '0.0.1'
+
+//dependencies {
+//    implementation 'org.slf4j:slf4j-api:1.7.28'
+//}
 
 jar {
     baseName 'ulf-api'
