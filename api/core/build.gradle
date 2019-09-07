@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 
-group = 'org.ulf'
-ext.artifact = 'api-core'
+group = 'org.jbc.ulf'
+ext.artifact = 'ulf-api-core'
 version = '0.0.1'
 
 jar {
